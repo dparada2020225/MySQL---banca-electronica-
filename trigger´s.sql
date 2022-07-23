@@ -1,0 +1,11 @@
+DROP TRIGGER IF EXISTS HISTORIAL_TRANSACCONES;
+DELIMITER $$
+USE `proyecto_banco`$$ 
+CREATE TRIGGER  HISTORIAL_TRANSACCONES AFTER INSERT ON SERVICIOS
+FOR EACH ROW
+BEGIN
+INSERT INTO HISTORIAL(id_cliente, id_servicio, pago_servicio_de, fecha)
+VALUES(NEW.id_clientee,NEW.id_servicio,NEW.pago_servicio_de,NEW.fecha);
+
+END$$
+DELIMITER ;
